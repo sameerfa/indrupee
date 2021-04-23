@@ -1,0 +1,19 @@
+{
+    "name": "fasamr/indrupee",
+    "description": "Converts a number to Indian Rupee Format",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sameer FA",
+            "email": "samervj@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4":{
+            "IndRupee\\": "src/"
+        }
+    },
+    "require": {}
+}
