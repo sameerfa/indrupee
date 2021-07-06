@@ -84,4 +84,27 @@ class IndRupee{
         }
     }
 
+    //this function converts inr to other fiat currency
+    function fiatconvert($from, $to, $amount) {
+      $req_url = 'https://api.exchangerate-api.com/v4/latest/'.$from;
+      $response_json = file_get_contents($req_url);
+      if(false !== $response_json) {
+          $response_object = json_decode($response_json);
+          return round(($amount * $response_object->rates->$to), 2);
+      }
+    }
+
+    //this function converts inr fiat to crypto
+    function cryptoconvert($from, $to, $amount){
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, " HTTPS://blockchain.info/to".$to."?currency=".$from."&value=".$amount);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      $conversion = curl_exec($ch);
+      curl_setopt($ch, CURLOPT_URL, "https://blockchain.info/ticker");
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      $prices = json_decode(curl_exec($ch), true);
+      curl_close($ch);
+      return $prices[$from]['15m'];
+    }
+
 }

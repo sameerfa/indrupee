@@ -1,9 +1,11 @@
 # indrupee
-Converts number to Indian Rupee Format. In Words, In Crores, In Lakhs, With Indian Commas.
+Converts number to Indian Rupee Format. In Words, In Crores, In Lakhs, With Indian Commas, To other Fiat Currency and Crypto Currency
 
 ## Installation
 
-`composer require fasamr/indrupee`
+```php
+composer require fasamr/indrupee
+```
 
 ## Usage
 
@@ -27,10 +29,26 @@ $rupee = new \IndRupee\IndRupee(); ?>
 
 ```php
 <?php echo $rupee->incrores(50222587.689,2,1);
-// will return 5.02 Crores, 2nd parameter '2' defines number of decimal points needed, 3rd parameter adds prefix (&#8377;) when 1 or 0
+// will return 5.02 Crores, 2nd parameter '2' defines number of decimal points needed,
+//3rd parameter adds prefix (&#8377;) when 1 or 0
 ```
 
 ```php
 <?php echo $rupee->inlakhs(90222587,2,0);
 // will return 902.23 Lakhs, 2nd parameter for number of decimal points, 3rd for inr symbol prefix
+```
+
+```php
+<?php echo $rupee->fiatconvert("USD","INR",1);
+// will return 74.38
+```
+
+```php
+<?php echo $rupee->cryptoconvert("INR","BTC",1);
+// will return 2796810.45
+```
+
+```php
+<?php echo $rupee->inwords($rupee->cryptoconvert("INR","BTC",1));
+// will return Twenty Seven Lakhs Ninety Six Thousands Eight Hundred and Ten Rupees Four Five Paise
 ```
